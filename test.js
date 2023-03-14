@@ -45,7 +45,7 @@ function moreNeighbors() {
       }
     }
   }
-
+  //on parcours les pays avec le plus de voisins
   for (let p in paysmax) {
     console.log(paysmax[p].toString()); //on affiche le nom du pays
     for (let j in paysmax[p]["paysFrontalier"]) {
@@ -53,8 +53,6 @@ function moreNeighbors() {
     }
 
   }
-
-
 }
 
 
@@ -90,24 +88,17 @@ function moreLanguages() {
     else if (nombrelangue == max) { //si le pays a autant de langue que le max actuel
       paysmax.push(ressources["pays"][pays]); //on l'ajoute dans le tableau
     }
-
-
-
   }
-  //on 
+  //on parcours les pays parlant le plus de langue
   for (let p in paysmax) {
     console.log(paysmax[p].toString()); //on affiche le nom du pays
     for (let j in paysmax[p]["languages"]) {
       console.log(paysmax[p]["languages"][j]); //on affiche les langues du pays
     }
-
   }
-
-
 }
 
 // Q5
-
 
 function withCommonLanguage() {
   var p = ressources["pays"];
@@ -135,7 +126,6 @@ function withCommonLanguage() {
               break;
             }
           }
-
           if (paysValide) {
             break;
           }
@@ -149,8 +139,6 @@ function withCommonLanguage() {
 }
 
 // Q6
-
-
 function withoutCommonCurrency() {
   var p = ressources["pays"];
   var tableauPaysSansMonnaieCommune = [];

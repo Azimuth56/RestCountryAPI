@@ -126,13 +126,35 @@ function veryLongTrip(code_pays) {
   var listePays = [];
 
   var listePaysParcouru = [code_pays];
-  var filePays = [p[code_pays]];
+  var pilePays = [p[code_pays]];
 
-  while(filePays.length > 0){
-      for(var paysFrontalier in p[code_pays].borders){
-        console.log(paysFrontalier);
+  while (pilePays.length > 0) {
+    console.log(pilePays[0].nom["fr"]);
+    console.log(pilePays[0].paysFrontalier);
+    console.log(pilePays.length);
+
+    var trouve = false;
+
+    if (pilePays[0].paysFrontalier != undefined) {
+      for (var i = 0; i < pilePays[0].paysFrontalier.length; i += 1) {
+        var cP = pilePays[0].paysFrontalier[i];
+
+        if (!listePaysParcouru.includes(cP)) {
+          if (p[cP] != undefined) {
+            trouve = true;
+            listePays.push(p[cP]);
+            pilePays.push(p[cP]);
+            listePaysParcouru.push(cP);
+            break;
+          }
+        }
       }
+    }
 
-      filePays.shift();
+    if (trouve == false) {
+      pilePays.pop();
+    }
   }
+
+  return listePays;
 }
