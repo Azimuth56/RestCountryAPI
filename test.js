@@ -29,17 +29,19 @@ function outsideTheContinent() {
 function moreNeighbors() {
   let max = 1; //on initialise le max a un
   let paysmax = []; //on stockera les pays avec le plus de voisins dans un tableau car il peut en y avoir plusieurs
+  //on parcours tous les pays
   for (let pays in ressources["pays"]) {
     let voisinpays = ressources["pays"][pays]["paysFrontalier"];
+    //si le pays a des voisins
     if (voisinpays != undefined) {
-      let nombrevoisin = voisinpays.length;
-      if (nombrevoisin > max) {
-        max = nombrevoisin
+      let nombrevoisin = voisinpays.length; //on regarde combien il a de voisins
+      if (nombrevoisin > max) { //s'il a plus de voisins que le max actuel
+        max = nombrevoisin//on change le max
         paysmax = []; //on vide le tableau
-        paysmax.push(ressources["pays"][pays]);
+        paysmax.push(ressources["pays"][pays]); //et on ajoute le pays qui a le nouveau max
       }
-      else if (nombrevoisin == max) {
-        paysmax.push(ressources["pays"][pays]);
+      else if (nombrevoisin == max) { //si le pays a autant de voisin que le max actuel
+        paysmax.push(ressources["pays"][pays]); // on ajoute le pays au tableau
       }
     }
   }
@@ -74,24 +76,25 @@ function neighborless() {
 
 //Q4
 function moreLanguages() {
-  let max = 1;
-  let paysmax = [];
+  let max = 1; //on initialise le max a un
+  let paysmax = [];//on stockera les pays avec le plus de langue dans un tableau car il peut en y avoir plusieurs
+  //on parcours tous les pays
   for (let pays in ressources["pays"]) {
-    let languepays = ressources["pays"][pays]["languages"];
-    let nombrelangue = languepays.length;
-    if (nombrelangue > max) {
-      max = nombrelangue
+    let languepays = ressources["pays"][pays]["languages"]; //on stock les langue dans languepays
+    let nombrelangue = languepays.length; //on regarde combien il y a de langue
+    if (nombrelangue > max) { //si le pays a plus de langue que la max actuel
+      max = nombrelangue //on met à jours le max
       paysmax = []; //on vide le tableau
-      paysmax.push(ressources["pays"][pays]);
+      paysmax.push(ressources["pays"][pays]); //on ajoute le pays avec le nouveau max
     }
-    else if (nombrelangue == max) {
-      paysmax.push(ressources["pays"][pays]);
+    else if (nombrelangue == max) { //si le pays a autant de langue que le max actuel
+      paysmax.push(ressources["pays"][pays]); //on l'ajoute dans le tableau
     }
 
 
 
   }
-
+  //on 
   for (let p in paysmax) {
     console.log(paysmax[p].toString()); //on affiche le nom du pays
     for (let j in paysmax[p]["languages"]) {
@@ -121,12 +124,12 @@ function withCommonLanguage() {
 
           for (var lC2 in p[pays]["languages"]) {
             if (p[codePF]["languages"][lC1]["iso639_1"] == p[pays]["languages"][lC2]["iso639_1"]) {
-              
+
               console.log(p[pays].toString(p[pays].toString()));
               console.log(p[codePF].toString(p[pays].toString()));
               console.log(ressources["langages"][p[codePF]["languages"][lC1]["iso639_1"]]["name"]);
-              
-              
+
+
               tableauPaysLanguesVoisines[p[pays]["alpha3"]] = p[pays];
               paysValide = true;
               break;
@@ -182,18 +185,28 @@ function withoutCommonCurrency() {
 }
 
 // Question 7
-function sortingDecreasingDensity(){
-  // formule : nb habitant / km2
+function sortingDecreasingDensity() {
+  // on stock les pays dans le tableau
   tabPays = {}
-  for(let i in ressources["pays"]){
+  // on parcours tout les pays 
+  for (let i in ressources["pays"]) {
+    // on stock la population du pays actuel
     population = ressources["pays"][i]["population"];
+    // on stock la superficie du pays actuel
     superficie = ressources["pays"][i]["superficie"];
-    densite = population/superficie;
+    // on calcul la densité avec la formule suivante :
+    // formule : nb habitant / km2
+    densite = population / superficie;
+    // on stock le nom du pays (version française du nom)
     nomPays = ressources["pays"][i]["nom"]["fr"];
-    tabPays[nomPays]=densite;
+    // on ajoute la densité du pays dans le tableau
+    tabPays[nomPays] = densite;
   }
-    const tab = Object.values(ressources["pays"]).sort((item1, item2)=>{
-    return  item2.getPopDensity() - item1.getPopDensity();
+  // on trie le tableau de manière décroissant
+  const tab = Object.values(ressources["pays"]).sort((item1, item2) => {
+    // item2 - item 2 => décroissant
+    // item1 - item2 => croissant
+    return item2.getPopDensity() - item1.getPopDensity();
   })
   console.log(tab)
 }

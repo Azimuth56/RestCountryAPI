@@ -125,9 +125,14 @@ function veryLongTrip(code_pays) {
   var p = ressources["pays"];
   var listePays = [];
 
-  console.log(p[code_pays]);
-  var file = [p[code_pays]];
+  var listePaysParcouru = [code_pays];
+  var filePays = [p[code_pays]];
 
+  while(filePays.length > 0){
+      for(var paysFrontalier in p[code_pays].borders){
+        console.log(paysFrontalier);
+      }
 
-
+      filePays.shift();
+  }
 }
