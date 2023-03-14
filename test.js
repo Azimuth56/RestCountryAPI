@@ -27,8 +27,8 @@ function outsideTheContinent() {
 //Q2
 
 function moreNeighbors() {
-  let max = 1;
-  let paysmax = [];
+  let max = 1; //on initialise le max a un
+  let paysmax = []; //on stockera les pays avec le plus de voisins dans un tableau car il peut en y avoir plusieurs
   for (let pays in ressources["pays"]) {
     let voisinpays = ressources["pays"][pays]["paysFrontalier"];
     if (voisinpays != undefined) {
@@ -42,11 +42,6 @@ function moreNeighbors() {
         paysmax.push(ressources["pays"][pays]);
       }
     }
-
-
-
-
-
   }
 
   for (let p in paysmax) {
@@ -64,9 +59,12 @@ function moreNeighbors() {
 //Q3
 function neighborless() {
   for (let pays in ressources["pays"]) {
+    //pour chaque pays on va regarder ses pays frontalier
     let listefrontalier = ressources["pays"][pays]["paysFrontalier"];
 
+    //s'il n'a pas de pays frontalier
     if (listefrontalier == null) {
+      //on affiche le pays
       console.log(ressources["pays"][pays].toString());
     }
 

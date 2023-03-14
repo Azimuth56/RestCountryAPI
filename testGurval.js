@@ -121,12 +121,12 @@ function moreTopLevelDomains() {
 }
 
 
-function veryLongTrip(nom_pays) {
+function veryLongTrip(code_pays) {
   var p = ressources["pays"];
   var listePays = [];
 
-  console.log(p);
-  var file = [nom_pays];
+  console.log(p[code_pays]);
+  var file = [p[code_pays]];
 
 
 
