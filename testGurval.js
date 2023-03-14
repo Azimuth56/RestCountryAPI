@@ -129,15 +129,23 @@ function veryLongTrip(code_pays) {
   var pilePays = [p[code_pays]];
 
   while (pilePays.length > 0) {
-    console.log(pilePays[0].nom["fr"]);
-    console.log(pilePays[0].paysFrontalier);
-    console.log(pilePays.length);
+    var texte = "";
+    
+    for(var k = 0; k < pilePays.length; k +=1){
+      if(texte.length != 0){
+        texte += " -> ";
+      }
+      
+      texte += pilePays[k].nom["fr"];
+    }
+    
+    console.log(texte);
 
     var trouve = false;
 
-    if (pilePays[0].paysFrontalier != undefined) {
-      for (var i = 0; i < pilePays[0].paysFrontalier.length; i += 1) {
-        var cP = pilePays[0].paysFrontalier[i];
+    if (pilePays[pilePays.length - 1].paysFrontalier != undefined) {
+      for (var i = 0; i < pilePays[pilePays.length - 1].paysFrontalier.length; i += 1) {
+        var cP = pilePays[pilePays.length - 1].paysFrontalier[i];
 
         if (!listePaysParcouru.includes(cP)) {
           if (p[cP] != undefined) {
@@ -156,5 +164,6 @@ function veryLongTrip(code_pays) {
     }
   }
 
+  console.log(listePays)
   return listePays;
 }

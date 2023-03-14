@@ -105,7 +105,7 @@ function fileDB() {
 
     tabObjet[c.alpha3Code] =
       new Country(c.alpha3Code, c.area, c.borders, c.capital,
-        c.continent, c.demonym, c.flags,
+        c.region, c.demonym, c.flags,
         tabNomTemp, c.population, c.topLevelDomain,
         tabMonnaiesTemp, tabLangagesTemp);
   }

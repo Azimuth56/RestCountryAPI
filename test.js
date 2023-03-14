@@ -210,3 +210,51 @@ function moreTopLevelDomains() {
     }
   }
 }
+
+//Q9
+function veryLongTrip(code_pays) {
+  var p = ressources["pays"];
+  var listePays = [];
+
+  var listePaysParcouru = [code_pays];
+  var pilePays = [p[code_pays]];
+
+  while (pilePays.length > 0) {
+    var texte = "";
+    
+    for(var k = 0; k < pilePays.length; k +=1){
+      if(texte.length != 0){
+        texte += " -> ";
+      }
+      
+      texte += pilePays[k].nom["fr"];
+    }
+    
+    console.log(texte);
+
+    var trouve = false;
+
+    if (pilePays[pilePays.length - 1].paysFrontalier != undefined) {
+      for (var i = 0; i < pilePays[pilePays.length - 1].paysFrontalier.length; i += 1) {
+        var cP = pilePays[pilePays.length - 1].paysFrontalier[i];
+
+        if (!listePaysParcouru.includes(cP)) {
+          if (p[cP] != undefined) {
+            trouve = true;
+            listePays.push(p[cP]);
+            pilePays.push(p[cP]);
+            listePaysParcouru.push(cP);
+            break;
+          }
+        }
+      }
+    }
+
+    if (trouve == false) {
+      pilePays.pop();
+    }
+  }
+
+  console.log(listePays)
+  return listePays;
+}

@@ -51,16 +51,20 @@
           let continent = document.createElement("td");
           continent.textContent = ressources["pays"][pays]["continent"];
 
+          // drapeau 
+          let drapeau = document.createElement("td");
+          let drapeauIMG = document.createElement("img");
+          drapeauIMG.src = ressources["pays"][pays]["drapeau"]["svg"]
+          drapeau.append(drapeauIMG)
 
-          
-          
+
           // ajout des données
           ligne.append(nomContent)
           ligne.append(population)
           ligne.append(surface)
           ligne.append(densite)
           ligne.append(continent)
-
+          ligne.append(drapeau)
           b.append(ligne);
         }
 
@@ -74,6 +78,10 @@
 
 </body>
 <style>
+  img {
+    width: 50px;
+  }
+
   table {
     border-collapse: collapse;
     width: 100%;
