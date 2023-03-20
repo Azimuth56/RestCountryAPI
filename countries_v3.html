@@ -8,7 +8,26 @@
   <link href="style.css" rel="stylesheet">
   <title>Tableau</title>
 </head>
-
+<style>
+  .modal{
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: #fff; 
+    opacity: 0.9;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 2em;
+    font-family: 'Courier New', Courier, monospace;
+  }
+</style>
 <body>
   <table>
     <thead>
@@ -30,6 +49,17 @@
     <button id="next-btn">SUIV</button>
   </div>
 
+  <div class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <p id="nomPays-modal">Nom du pays</p>
+      <p id="populationPays-modal">Population</p>
+      <p id="surfacePays-modal">Surface</p>
+      <p id="densitePays-modal">Densité de population</p>
+      <p id="contientPays-modal">Continent d'appartenance</p>
+      <img src="" alt="" id="imgPays-modal">
+    </div>
+  </div>
   <script src="countries.js"></script>
   <script src="script.js"></script>
   <script src="fonctionsMiseEnPage.js"></script>
@@ -67,6 +97,66 @@
     });
 
     genererTableauPays();
+
+    // quand on clique sur un pays, on affiche les infos du pays dans la console
+    document.querySelectorAll("tr").forEach(function (tr) {
+      tr.addEventListener("click", function () {
+        // on récupère toutes les infos des td du tr
+        let tds = tr.querySelectorAll("td");
+        // on récupère le nom du pays
+        let nomPays = tds[0].innerHTML;
+        // on récupère la population du pays
+        let populationPays = tds[1].innerHTML;
+        // on récupère la surface du pays
+        let surfacePays = tds[2].innerHTML;
+        // on récupère la densité de population du pays
+        let densitePays = tds[3].innerHTML;
+        // on récupère le continent d'appartenance du pays
+        let continentPays = tds[4].innerHTML;
+        // on récupère le drapeau du pays
+        let drapeauPays = tds[5];
+        // on récupère le pays dans le tableau des pays
+        // on affiche les infos du pays dans la console
+        console.log("Nom du pays : " +tds[0].innerHTML);
+        console.log("Population : " +tds[1].innerHTML);
+        console.log("Surface : " +tds[2].innerHTML);
+        console.log("Densité de population : " +tds[3].innerHTML);
+        console.log("Continent d'appartenance : " +tds[4].innerHTML);
+        console.log("Drapeau : " +tds[5].innerHTML);
+        console.log("\n\n\n");
+        // afficher le nom du pays dans l'id nomPays-modal
+        document.getElementById("nomPays-modal").innerHTML = "Nom du pays "+nomPays;
+        // afficher la population du pays dans l'id populationPays-modal
+        document.getElementById("populationPays-modal").innerHTML = "Population du pays "+populationPays;
+        // afficher la surface du pays dans l'id surfacePays-modal
+        document.getElementById("surfacePays-modal").innerHTML = "Surface du pays "+surfacePays;
+        // afficher la densité de population du pays dans l'id densitePays-modal
+        document.getElementById("densitePays-modal").innerHTML = "Densite du pays "+densitePays;
+        // afficher le continent d'appartenance du pays dans l'id contientPays-modal
+        document.getElementById("contientPays-modal").innerHTML = "Continent du pays "+continentPays;
+        // on change le src de l'image id imgPays
+        console.log(drapeauPays);
+        
+
+        // afficher la fenêtre modale
+        var modal = document.getElementsByClassName("modal")[0];
+
+        
+        // on récupère le champ src de drapeauPays
+        drapeauLien = drapeauPays.querySelector("img").src;
+
+        modal.style.display = "flex";
+        document.getElementById("imgPays-modal").src = drapeauLien;
+      });
+    });
+
+    // fermer la fenêtre modale
+    var span = document.getElementsByClassName("close")[0];
+    span.onclick = function() {
+      console.log("appyé sur le bouton fermer");
+      var modal = document.getElementsByClassName("modal")[0];
+      modal.style.display = "none";
+    }
   </script>
 </body>
 
