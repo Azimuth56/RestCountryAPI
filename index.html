@@ -7,27 +7,76 @@
   <title>replit</title>
   <link href="style.css" rel="stylesheet" type="text/css" />
 </head>
+<style>
+  body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    background-color:#62bbc1;
+    gap:20px;
+  }
+a {
+  position: relative;
+  color:#fff;
+  text-decoration:none;
+  font-size:4em;
+  font-family: sans-serif;
+}
 
+a::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    border-radius: 4px;
+    background-color: #18272F;
+    bottom: 0;
+    left: 0;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform .3s ease-in-out;
+  }
+
+a:hover::before {
+  transform-origin: left;
+  transform: scaleX(1);
+}
+a:hover{
+  color:#18272F;
+  transition: transform .3s ease-in-out;
+}
+.conteneur{
+  display: flex;
+  flex-direction: column;
+  gap:20px;
+  justify-content: center;
+  align-items: center;
+  background: rgba( 255, 255, 255, 0.25 );
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 6px );
+-webkit-backdrop-filter: blur( 6px );
+border-radius: 10px;
+border: 1px solid rgba( 255, 255, 255, 0.18 );
+  padding:20px;
+}
+  .good{
+    color:#13CE42;
+  }
+  .bad{
+    color:#ef2d56;
+  }
+</style>
 <body>
-  Hello world
-  <script src="countries.js"></script>
-  <script src="script.js"></script>
-  <script src="test.js"></script>
-  <!--<script src="testGurval.js"></script>
-  <script src="testRonan.js"></script>
-  <script src="testNoah.js"></script>-->
-  <script>
-    outsideTheContinent();
-    //moreNeighbors();
-    //neighborless();
-    //moreLanguages();
-    //withCommonLanguage();
-    //withoutCommonCurrency();
-    //sortingDecreasingDensity();
-    //moreTopLevelDomains();
-    //veryLongTrip();
-   
-  </script>
+  <div class="conteneur">
+    <a href="countries_v1.html" class="good">Countries V1</a>
+    <a href="countries_v2.html" class="good">Countries V2</a>
+    <a href="countries_v3.html" class="bad">Countries V3</a>
+    <a href="countries_v4.html" class="bad">Countries V4</a>
+    <a href="countries_v5.html" class="bad">Countries V5</a>
+  </div>
+
 </body>
 
 </html>

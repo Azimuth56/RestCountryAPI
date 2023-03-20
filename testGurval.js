@@ -26,7 +26,7 @@ function moreNeighbors() {
 
 }
 
-
+This is where your Repls will
 function neighborless() {
   var p = ressources["pays"];
   var tableauPaysSansVoisin = [];
@@ -130,16 +130,16 @@ function veryLongTrip(code_pays) {
 
   while (pilePays.length > 0) {
     var texte = "";
-    
-    for(var k = 0; k < pilePays.length; k +=1){
-      if(texte.length != 0){
+
+    for (var k = 0; k < pilePays.length; k += 1) {
+      if (texte.length != 0) {
         texte += " -> ";
       }
-      
+
       texte += pilePays[k].nom["fr"];
     }
-    
-    console.log(texte);
+
+    //console.log(texte);
 
     var trouve = false;
 
@@ -164,6 +164,5 @@ function veryLongTrip(code_pays) {
     }
   }
 
-  console.log(listePays)
   return listePays;
 }

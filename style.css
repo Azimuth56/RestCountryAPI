@@ -1,4 +1,25 @@
-html {
-  height: 100%;
-  width: 100%;
+img {
+  width: 50px;
+}
+    
+thead, tbody {
+  margin: 0px;
+  padding: 0px;
+}
+    
+th, td, tr {
+  width: 200px;
+}
+
+td {
+  padding: 10px;
+}
+    
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+th {
+  background-color: #4CAF50;
+  color: white;
 }

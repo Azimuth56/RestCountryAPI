@@ -14,7 +14,12 @@
   <script src="script.js"></script>
   <script src="testGurval.js"></script>
   <script>
-    veryLongTrip("AFG");
+    console.log(ressources["pays"]["BRA"]);
+
+    for (var clefPays in ressources["pays"]) {
+      console.log(veryLongTrip(clefPays).length);
+      console.log(veryLongTrip(clefPays));
+    }
   </script>
 </body>
 

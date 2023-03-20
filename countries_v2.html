@@ -22,18 +22,25 @@
       </tr>
     </thead>
     <tbody id="corpsTableau">
-
-
-
     </tbody>
   </table>
+  <div>
+    <button id="prev-btn">PRÉC</button>
+    <span id="page-num"></span>
+    <button id="next-btn">SUIV</button>
+  </div>
 
   <script src="countries.js"></script>
   <script src="script.js"></script>
   <script src="fonctionsMiseEnPage.js"></script>
+
   <script>
     var paysdebut = 0;
     var paysfin = 24;
+
+    const prevBtn = document.getElementById("prev-btn");
+    const nextBtn = document.getElementById("next-btn");
+    const pageNum = document.getElementById("page-num");
 
     // Génération du tableau qui va contenir les pays à afficher
 
@@ -41,6 +48,23 @@
     for (let pays in ressources["pays"]) {
       allCountry.push(ressources["pays"][pays])
     }
+
+    prevBtn.addEventListener("click", function () {
+      if (paysdebut >= 25) {//pour pas qu'on puisse aller sur un indice en dessous de 0
+        paysdebut = paysdebut - 25;
+        paysfin = paysfin - 25;
+        genererTableauPays();
+      }
+    });
+
+    nextBtn.addEventListener("click", function () {
+      //on met a jour le premier et le dernier rang des pays à afficher
+      if (paysdebut < allCountry.length - 25) {
+        paysdebut = paysdebut + 25;
+        paysfin = paysfin + 25;
+        genererTableauPays();
+      }
+    });
 
     genererTableauPays();
   </script>
