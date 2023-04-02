@@ -10,6 +10,8 @@
 </head>
 
 <body>
+  <aside id="encartFiltres"></aside>
+
   <table>
     <thead>
       <tr>
@@ -53,20 +55,23 @@
       if (paysdebut >= 25) {//pour pas qu'on puisse aller sur un indice en dessous de 0
         paysdebut = paysdebut - 25;
         paysfin = paysfin - 25;
-        genererTableauPays();
+        genererTableauPays(true);
       }
     });
 
     nextBtn.addEventListener("click", function () {
       //on met a jour le premier et le dernier rang des pays à afficher
-      if (paysdebut < allCountry.length - 25) {
+      if (paysfin + 25 <= allCountry.length) {
         paysdebut = paysdebut + 25;
         paysfin = paysfin + 25;
-        genererTableauPays();
+        genererTableauPays(true);
       }
     });
 
-    genererTableauPays();
+    genererListeContinents();
+    genererListeLangues();
+    genererChampPays();
+    genererTableauPays(true);
   </script>
 </body>
 

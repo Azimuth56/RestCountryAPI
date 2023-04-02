@@ -10,6 +10,8 @@
 </head>
 
 <body>
+  <aside id="encartFiltres"></aside>
+
   <table>
     <thead>
       <tr>
@@ -53,7 +55,7 @@
       if (paysdebut >= 25) {//pour pas qu'on puisse aller sur un indice en dessous de 0
         paysdebut = paysdebut - 25;
         paysfin = paysfin - 25;
-        genererTableauPays();
+        genererTableauPays(true);
       }
     });
 
@@ -62,11 +64,60 @@
       if (paysfin + 25 <= allCountry.length) {
         paysdebut = paysdebut + 25;
         paysfin = paysfin + 25;
-        genererTableauPays();
+        genererTableauPays(true);
       }
     });
 
-    genererTableauPays();
+    genererListeContinents();
+    genererListeLangues();
+    genererChampPays();
+    genererTableauPays(true);
+
+
+    
+    const compare = function(ids, asc){
+    return function(row1, row2){
+      const tdValue = function(row, ids){
+        return row.children[ids].textContent;
+      }
+      const tri = function(v1, v2){
+        if (v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2)){
+          return v1 - v2;
+        }
+        else {
+          if (v1 === v2) {
+            const nom1 = row1.querySelector('td:first-child').textContent;
+            const nom2 = row2.querySelector('td:first-child').textContent;
+            return nom1.localeCompare(nom2);
+          }
+          return v1.toString().localeCompare(v2);
+        }
+      };
+      const result = tri(tdValue(asc ? row1 : row2, ids), tdValue(asc ? row2 : row1, ids));
+      return asc ? result : -result;
+    }
+  }
+  
+  const tbody = document.querySelector('tbody');
+  const thx = document.querySelectorAll('th');
+  const trxb = tbody.querySelectorAll('tr');
+  thx.forEach(function(th){
+    th.addEventListener('click', function(){
+      if (th.textContent !== 'Drapeau') { // Vérifier si la colonne cliquée n'est pas celle du drapeau
+        let classe = Array.from(trxb).sort(compare(Array.from(thx).indexOf(th), this.asc = !this.asc));
+        classe.forEach(function(tr){
+           tbody.appendChild(tr)
+        });
+        // Ajouter le style de texte en gras à l'en-tête de colonne triée
+        thx.forEach(function (th) {
+          th.style.fontWeight = 'normal';
+        });
+        th.style.fontWeight = 'bold';
+      }
+    })
+  });
+
+
   </script>
 </body>
 
