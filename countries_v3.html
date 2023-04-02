@@ -13,7 +13,6 @@
     display: none;
     position: fixed;
     z-index: 1;
-    padding-top: 100px;
     left: 0;
     top: 0;
     width: 100%;
@@ -25,7 +24,7 @@
     align-items: center;
     flex-direction: column;
     font-size: 2em;
-    font-family: 'Courier New', Courier, monospace;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   }
 </style>
 <body>
@@ -77,6 +76,7 @@
     let allCountry = []
     for (let pays in ressources["pays"]) {
       allCountry.push(ressources["pays"][pays])
+
     }
 
     prevBtn.addEventListener("click", function () {
@@ -84,6 +84,7 @@
         paysdebut = paysdebut - 25;
         paysfin = paysfin - 25;
         genererTableauPays();
+        modal();
       }
     });
 
@@ -93,13 +94,16 @@
         paysdebut = paysdebut + 25;
         paysfin = paysfin + 25;
         genererTableauPays();
+        modal();
       }
     });
 
     genererTableauPays();
-
-    // quand on clique sur un pays, on affiche les infos du pays dans la console
-    document.querySelectorAll("tr").forEach(function (tr) {
+    
+    // pour afficher la modal à la première exécution(en gros ça marche pas si on a pas cliqué sur suivant ...)
+    modal();
+    function modal() {
+      document.querySelectorAll("tr").forEach(function (tr) {
       tr.addEventListener("click", function () {
         // on récupère toutes les infos des td du tr
         let tds = tr.querySelectorAll("td");
@@ -157,6 +161,8 @@
       var modal = document.getElementsByClassName("modal")[0];
       modal.style.display = "none";
     }
+    }
+    
   </script>
 </body>
 
