@@ -20500,3 +20500,5 @@ const countries=[
       "independent": true
    }
 ]
+
+console.log(countries)
